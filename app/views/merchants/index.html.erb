@@ -1,0 +1,63 @@
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  <div class="container text-center">
+    <h1>Merchants</h1>
+  </div>
+  <% if @user.is_seller? %>
+    <% unless @user.can_receive_payments? %>
+      <div class="panel panel-default">
+        <div class="panel-header text-center">
+          <h4>
+            You wont be able to sell items until you register with Stripe!
+          </h4>
+        </div>
+        <div class="panel-body text-center">
+          <%= link_to 'Connect', user_stripe_connect_omniauth_authorize_path, class: 'btn btn-lg btn-info', target: '_blank' %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+  <% @merchants.each do |merchant| %>
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
+      <div class="panel panel-default">
+        <div class="panel-header text-center">
+          <h3>
+            <%= merchant.title %>
+          </h3>
+          <p>
+            <%= merchant.description %>
+          </p>
+        </div>
+        <div class="panel-body">
+          <% if current_user == merchant.owner %>
+            <div class="row">
+              <div class="col-lg-4">
+                <%= link_to 'Show', merchant, class: 'btn btn-md btn-warning btn-options' %>
+              </div>
+              <div class="col-lg-4">
+                <%= link_to 'Edit', edit_merchant_path(merchant), class: 'btn btn-md btn-warning btn-options' %>
+              </div>
+              <div class="col-lg-4">
+                <%= link_to 'Destroy', merchant, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-md btn-warning btn-options' %>
+              </div>
+            </div>
+          <% else %>
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                <%= link_to 'Show', merchant, class: 'btn btn-md btn-success btn-options' %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <br/>
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+    <div class="panel panel-default">
+      <div class="panel-header">
+        <%= link_to 'New Merchant', new_user_merchant_path(@user), class: 'btn btn-md btn-info' %>
+      </div>
+    </div>
+  </div>
+  <%= render 'billing' %>
+</div>

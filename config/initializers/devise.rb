@@ -10,10 +10,7 @@ Devise.setup do |config|
 
   # Stripe Config
   config.omniauth :stripe_connect,
-    ENV['CLIENT_ID'],
-    ENV['SECRET_KEY'],
-    scope: 'read_write',
-    stripe_landing: 'login'
+    'ca_Dfnf7sV69clJy0ztx3gH9DX6ZIoh72w4', 'sk_test_KBOO3jjIdTMEFB9Cch8sEIZG', :scope => 'read_write', :stripe_landing => 'register'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,

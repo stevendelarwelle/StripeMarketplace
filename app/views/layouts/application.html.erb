@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <%= include_gon %>
+    <%= Gon::Base.render_data %>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag 'application', media: 'all', data: { turbolinks_track: true } %>
+    <%= javascript_include_tag 'application', data: {turbolinks_track: true} %>
+    <script src="https://js.stripe.com/v2/" type="text/javascript"></script>
+    <%= tag :meta, :name => "stripe-key", :content => Rails.configuration.stripe[:publishable_key] %>
+  </head>
+  <body>
+    <%= render 'shared/navbar' %>
+    <div class="container">
+      <p id="notice">
+        <%= notice %>
+      </p>
+      <%= yield %>
+    </div>
+  </body>
+</html>

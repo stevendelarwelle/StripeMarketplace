@@ -1,0 +1,11 @@
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  <div class="jumbotron text-center">
+    <h4>
+      New Merchant
+    </h4>
+    <%= render 'form', merchant: @merchant, user: @user %>
+    <div class="container">
+      <%= link_to 'Back', merchants_path(@merchant), class: 'btn btn-info' %>
+    </div>
+  </div>
+</div>
